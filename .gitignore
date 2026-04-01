@@ -1,0 +1,12 @@
+# Python environment
+venv/
+__pycache__/
+*.pyc
+
+# Industrial Storage & Data
+local_storage/
+kyc_sessions.db
+*.log
+
+# Sensitive Credentials
+.env

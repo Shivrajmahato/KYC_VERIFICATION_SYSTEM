@@ -1,0 +1,52 @@
+:root {
+  --primary: #c31432;
+  --secondary: #240b36;
+  --bg-dark: #0f0c29;
+  --bg-light: #302b63;
+  --text: #ffffff;
+  --glass: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, var(--bg-dark), var(--bg-light), var(--bg-dark));
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #c31432, #240b36);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-COMPLETED { background: #00d2ff; color: #fff; }
+.status-IN_PROGRESS { background: #f7971e; color: #fff; }
+.status-FAILED { background: #c31432; color: #fff; }
+.status-PENDING { background: #777; color: #fff; }
