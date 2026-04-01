@@ -14,13 +14,14 @@ jobs:
       # Optional: In a real prod setup, we'd add a MinIO container here,
       # but our "Local Fallback" logic allows tests to run without it.
       minio:
-        image: bitnami/minio:latest
+        image: minio/minio:latest
         ports:
           - 9000:9000
           - 9001:9001
         env:
           MINIO_ROOT_USER: minioadmin
           MINIO_ROOT_PASSWORD: minioadmin
+        options: --health-cmd "curl -f http://localhost:9000/minio/health/live" --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - uses: actions/checkout@v4
@@ -28,7 +29,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-base-version: '3.10'
+        python-version: '3.10'
         cache: 'pip'
 
     - name: Install Dependencies
@@ -38,9 +39,8 @@ jobs:
 
     - name: Run Backend & Automated Tests
       run: |
-        # Start backend in background
+        # Use our "Local Fallback" storage to simplify CI/CD verification
+        mkdir -p local_storage
         python run.py &
-        # Wait for startup
-        sleep 5
-        # Run the automated test suite
+        sleep 10
         python test_api.py
