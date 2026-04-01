@@ -10,19 +10,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      # Optional: In a real prod setup, we'd add a MinIO container here,
-      # but our "Local Fallback" logic allows tests to run without it.
-      minio:
-        image: minio/minio:latest
-        ports:
-          - 9000:9000
-          - 9001:9001
-        env:
-          MINIO_ROOT_USER: minioadmin
-          MINIO_ROOT_PASSWORD: minioadmin
-        options: --health-cmd "curl -f http://localhost:9000/minio/health/live" --health-interval 10s --health-timeout 5s --health-retries 5
-
     steps:
     - uses: actions/checkout@v4
 
