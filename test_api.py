@@ -2,9 +2,10 @@ import requests
 import time
 import subprocess
 import os
+import sys
 
 print("Starting server...")
-process = subprocess.Popen([r"venv\Scripts\python.exe", "run.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+process = subprocess.Popen([sys.executable, "run.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 time.sleep(5) # Wait for server to start
 
 try:
